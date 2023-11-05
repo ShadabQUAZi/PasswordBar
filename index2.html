@@ -1,1 +1,37 @@
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus sint est reiciendis ducimus nam natus nemo laudantium accusantium mollitia voluptate.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password toggle</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="input-box">
+        <input type="password" placeholder="Password"
+        id="inputfield">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4FqBSOtSzygLtmy1-8GBiIBIVD9CGX59RuA&usqp=CAU" height="50px" id="eyeicon"
+        onclick="show()">
+    </div>
+    <script>
+
+       let iconimg = document.getElementById("eyeicon");
+       
+       let inputfield = document.getElementById("inputfield");
+
+       function show() {
+        // console.log("show");
+           if (inputfield.type == "password") {
+               inputfield.type = "text";
+               iconimg.src = "https://icons.veryicon.com/png/o/miscellaneous/godserver/password-visible-1.png";
+            } else {
+                inputfield.type = "password";
+                iconimg.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4FqBSOtSzygLtmy1-8GBiIBIVD9CGX59RuA&usqp=CAU"
+            }
+    
+}
+    </script>
+</body>
+
+</html>
