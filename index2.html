@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password toggle</title>
     <link rel="stylesheet" href="style.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
     <div class="input-box">
@@ -14,8 +14,190 @@
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4FqBSOtSzygLtmy1-8GBiIBIVD9CGX59RuA&usqp=CAU" height="50px" id="eyeicon"
         onclick="show()">
     </div>
-    <script>
 
+    <div class="stopwatch">
+        <h2>A Stopwatch ⏱️</h2>
+        <div class="time">
+            <p id="initialtime">00 : 00 : 00</p>
+        </div>
+        <div class="controls">
+            <button id="stop" onclick="pause()"><i class="fa-regular fa-circle-stop"></i></button>
+            <button id="play" onclick="start()"><i class="fa-solid fa-play"></i></i></button>
+            <button id="reset" onclick="reset()"><i class="fa-solid fa-rotate-left"></i></button>
+        </div>
+    </div>
+
+      <!-- TIC TAC TOE GAME -->
+      <div class="main">
+<div class="Tictac">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+ </div>
+ <div class="popup hide">
+    <p id="message">Sample Message</p>
+    <!-- <button id="new-game">New Game</button> -->
+</div>
+
+
+         <div class="btn">
+            <button id="restart">Restart</button>
+         </div>
+            </div>
+</div>
+    <script>
+// Tic Tac Toe 
+let restart = document.getElementById("restart")
+// const winner = document.querySelector(".winner")
+let box = document.querySelectorAll(".box");
+let popupRef = document.querySelector(".popup");
+// let newgameBtn = document.getElementById("new-game");
+let msgRef = document.getElementById("message");
+
+ let winningPattern = [
+  [0, 1, 2],
+  [0, 3, 6],
+  [2, 5, 8],
+  [6, 7, 8],
+  [3, 4, 5],
+  [1, 4, 7],
+  [0, 4, 8],
+  [2, 4, 6],
+];
+// first x turn
+let xturn = true;
+let count = 0;
+//disable all the buttons
+const disabledButtons = () => {
+    box.forEach((element) => 
+       ( element.disabled = true));
+        //show winners msg
+        popupRef.classList.remove("hide");
+
+};
+//enable all buttons (for new game and restart)
+const enablebuttons = () => {
+ box.forEach((element) => {
+    element.innerText = "";
+    element.disabled = false;
+ });
+  //disable popup
+  popupRef.classList.add("hide");
+ }
+ //new game 
+//  newgameBtn.addEventListener("click", () => {
+//   count = 0;
+//   enablebuttons();
+// });
+ restart.addEventListener("click" , () => {
+    count = 0;
+    enablebuttons();
+ });
+    // function when a player wins
+const winfunction = (letter) => {
+    disabledButtons()
+    if (letter == "X") {
+    msgRef.innerHTML = "&#x1F389; 'X' Wins &#x1F389";
+  } else {
+    msgRef.innerHTML = "&#x1F389; 'O' Wins &#x1F389";
+  }
+}
+// Win logic
+
+const winchecker = () => {
+    //loop through all win patterns
+    for (let  i of winningPattern) {
+        let [element1, element2, element3] = [
+            box[i[0]].innerText,
+            box[i[1]].innerText,
+            box[i[2]].innerText,
+        ] ;
+        //check if elements are filled
+        //if 3 empty elements are same and would give win
+        if (element1 != "" && (element2 != "") & (element3 != "")) {
+            if (element1 == element2 && element2 == element3) {
+             // if all 3 boxs have same values then pass the value to winfunction
+             winfunction(element1);
+            }
+        }
+   }
+};
+//Display X/O on click 
+box.forEach(element => {
+    element.addEventListener("click" , () => {
+if (xturn) {
+    xturn = false;
+    //dispaly X
+    element.innerText = "X";
+    element.disabled = true;
+    // element.style.background = "green";
+    element.style.color = "red";
+} else {
+    xturn = true;
+    //dispaly O
+    element.innerText = "O";
+    element.style.color = "green";
+    element.disabled = true;
+}
+// increment count on each click 
+count += 1;
+if (count == 9) {
+    // its a draw since there are a total of 9 box
+
+}
+//check for win on every click
+winchecker();
+    })
+});
+
+
+
+
+
+
+// Stopwatch
+
+let [hours, minutes, seconds] = [0,0,0]
+let displaytime = document.getElementById("initialtime");
+let timer = null;
+function stopwatch() {
+    seconds++;
+    if (seconds == 60) {
+       seconds = 0;
+       minutes++;
+       if (minutes == 60) {
+          minutes = 0;
+          hours++ ;
+       }
+    }
+    let h = hours < 10 ? "0" + hours : hours;
+    let m = minutes < 10 ? "0" + minutes : minutes;
+    let s = seconds < 10 ? "0" + seconds : seconds;
+
+    displaytime.innerText = `${h} : ${m} : ${s}`
+}
+function start() {
+    if (timer !== null) {
+        clearInterval(timer)
+    }
+ timer =  setInterval(stopwatch,1000)
+}
+
+function pause() {
+    clearInterval(timer);
+}
+function reset() {
+    clearInterval(timer);
+     [hours, minutes, seconds] = [0,0,0];
+    displaytime.innerText = "00 : 00 : 00";
+}
+// Password
        let iconimg = document.getElementById("eyeicon");
        
        let inputfield = document.getElementById("inputfield");
@@ -31,6 +213,10 @@
             }
     
 }
+
+// TIC TAC TOE GAME
+
+
     </script>
 </body>
 

@@ -4,6 +4,47 @@
     box-sizing: border-box;
 }
 
+
+.stopwatch {
+    height: 160px;
+    width: 300px;
+    display: flex;
+    justify-content: flex-start;
+    background-color: #FF3CAC;
+    background-image: linear-gradient(225deg, #FF3CAC 5%, #784BA0 59%, #2B86C5 100%);
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 3px 3px 6px -2px;
+
+}
+
+.controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.stopwatch button {
+    height: 35px;
+    border-radius: 50%;
+    width: 35px;
+    border: 0px;
+    background-color: transparent;
+    cursor: pointer;
+}
+#play {
+    font-size: x-large;
+    /* background-color: #fff; */
+    /* color: rgba(0, 255, 21, 0.482); */
+}
+.time {
+    font-size: 32px;
+    font-weight: bold; 
+    margin: 15px;
+    font-family: 'Signika Negative', sans-serif;
+
+
+}
+
 body {
     margin: auto;
 }
@@ -31,3 +72,88 @@ body {
     padding: 10px, 5px, 0px, 5px ;
     cursor: pointer;
 }
+
+.Tictac{
+    height: 300px;
+    width: 300px;
+    background: linear-gradient(135deg, #8052ec, #d161ff);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+     grid-gap: 4px;
+    box-sizing: content-box;
+    /* border: 5px solid blue; */
+    padding: 4px;
+    border-radius: 5px;
+}
+.popup {
+    background: linear-gradient(135deg, #009688, #dddddd);
+    height: 308px;
+    width: 308px;
+    top: 0px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1em;
+    font-size: 24px;
+}
+.box {
+    background-color: burlywood;
+    border-radius: 5px;
+    /* text-align: center; */
+    cursor: pointer;
+     display: flex;
+    justify-content: center;
+    align-items: center; 
+    font-size: 60px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 20px;
+
+}
+.msg {
+    margin-top: 25px;
+}
+#restart {
+   
+    padding: 6px;
+    cursor: pointer;
+    background-color: #00910ca8;
+    color: #5f305c;
+    border-radius: 5px;
+    border: none;
+    margin: 1rem;
+    font-size: larger;
+
+}
+
+
+#new-game {
+    padding: 4px;
+    cursor: pointer;
+    background-color: #111311a8;
+    color: #f7f6f7;
+    border-radius: 5px;
+    border: none;
+    /* font-size: larger; */
+}
+.main {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+/* .winner {
+    color: maroon;
+    -webkit-text-stroke-width: thin;
+    font-size: 22px;
+    display: none;
+} */
+.popup.hide {
+    display: none;
+  }
