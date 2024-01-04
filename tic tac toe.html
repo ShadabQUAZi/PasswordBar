@@ -14,7 +14,7 @@
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4FqBSOtSzygLtmy1-8GBiIBIVD9CGX59RuA&usqp=CAU" height="50px" id="eyeicon"
         onclick="show()">
     </div>
-
+    <!-- Stopwatch  -->
     <div class="stopwatch">
         <h2>A Stopwatch ⏱️</h2>
         <div class="time">
@@ -52,7 +52,7 @@
             </div>
 </div>
     <script>
-// Tic Tac Toe 
+// TIC TAC TOE GAME
 let restart = document.getElementById("restart")
 // const winner = document.querySelector(".winner")
 let box = document.querySelectorAll(".box");
@@ -73,23 +73,25 @@ let msgRef = document.getElementById("message");
 // first x turn
 let xturn = true;
 let count = 0;
+//enable all buttons (for new game and restart)
+function enablebuttons() 
+{
+    box.forEach((element) => {
+        element.innerHTML = "";
+        element.disabled = false;
+    });
+    //disable popup
+    popupRef.classList.add("hide");
+}
 //disable all the buttons
-const disabledButtons = () => {
-    box.forEach((element) => 
-       ( element.disabled = true));
+function disabledButtons  () {
+    // box.forEach(() => 
+    //    {element.disabled = true}
+    //    );
         //show winners msg
         popupRef.classList.remove("hide");
 
 };
-//enable all buttons (for new game and restart)
-const enablebuttons = () => {
- box.forEach((element) => {
-    element.innerText = "";
-    element.disabled = false;
- });
-  //disable popup
-  popupRef.classList.add("hide");
- }
  //new game 
 //  newgameBtn.addEventListener("click", () => {
 //   count = 0;
@@ -114,13 +116,13 @@ const winchecker = () => {
     //loop through all win patterns
     for (let  i of winningPattern) {
         let [element1, element2, element3] = [
-            box[i[0]].innerText,
-            box[i[1]].innerText,
-            box[i[2]].innerText,
+            box[i[0]].innerHTML,
+            box[i[1]].innerHTML,
+            box[i[2]].innerHTML,
         ] ;
         //check if elements are filled
         //if 3 empty elements are same and would give win
-        if (element1 != "" && (element2 != "") & (element3 != "")) {
+        if (element1 != "" && (element2 != "") && (element3 != "")) {
             if (element1 == element2 && element2 == element3) {
              // if all 3 boxs have same values then pass the value to winfunction
              winfunction(element1);
@@ -134,14 +136,13 @@ box.forEach(element => {
 if (xturn) {
     xturn = false;
     //dispaly X
-    element.innerText = "X";
+    element.innerHTML = "X";
     element.disabled = true;
-    // element.style.background = "green";
     element.style.color = "red";
 } else {
     xturn = true;
     //dispaly O
-    element.innerText = "O";
+    element.innerHTML = "O";
     element.style.color = "green";
     element.disabled = true;
 }
@@ -151,13 +152,31 @@ if (count == 9) {
     // its a draw since there are a total of 9 box
 
 }
+// if  (element.innerHTML = "O" && (element.innerHTML = "X")) {
+//       element.disabled = true;
+// } else{
+//     element.disabled = false;
+// }
+    
 //check for win on every click
 winchecker();
     })
+//  if(element.onClicked) {
+//         onClicked = true
+//         // Do something
+//         onClicked = false
+//     }
+
 });
 
 
-
+// box.forEach((element) => 
+//     {
+//         if (element.innerHTML != "") {
+            
+//         }
+//         element.disabled = true;
+//     })
 
 
 
@@ -214,7 +233,6 @@ function reset() {
     
 }
 
-// TIC TAC TOE GAME
 
 
     </script>
